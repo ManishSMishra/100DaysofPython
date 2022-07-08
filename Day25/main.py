@@ -30,10 +30,11 @@ score=0
 while len(correct_guess)<28:
     answer=screen.textinput(title=f"{score}/29 States Correct",prompt="What's another state's name? ").title()
     if answer=="Exit":
-        remaining_states=[]
-        for state in state_list:
-            if state not in correct_guess:
-                remaining_states.append(state)
+        remaining_states=[state for state in state_list if state not in correct_guess]
+        # remaining_states=[]
+        # for state in state_list:
+        #     if state not in correct_guess:
+        #         remaining_states.append(state)
         remaining_csv=pandas.DataFrame(remaining_states)
         remaining_csv.to_csv("Day25\\notguessed_list.csv")
         break
